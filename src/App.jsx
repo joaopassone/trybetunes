@@ -14,7 +14,9 @@ import { createUser } from './services/userAPI';
 class App extends React.Component {
   state = {
     loginNameInput: '',
+    searchArtistInput: '',
     isLoginButtonDisabled: true,
+    isSearchButtonDisabled: true,
     isLoading: false,
     isLogged: false,
   };
@@ -41,6 +43,14 @@ class App extends React.Component {
     }));
   };
 
+  verifySearchArtistInput = (name) => {
+    const checkLength = (name.length <= 1);
+
+    this.setState(() => ({
+      isSearchButtonDisabled: checkLength,
+    }));
+  };
+
   onInputChange = ({ target }) => {
     const { name, value } = target;
 
@@ -49,6 +59,7 @@ class App extends React.Component {
     }));
 
     if (name === 'loginNameInput') this.verifyLoginNameInput(value);
+    if (name === 'searchArtistInput') this.verifySearchArtistInput(value);
   };
 
   render() {
@@ -68,7 +79,15 @@ class App extends React.Component {
                       { ...this.state }
                     />) }
               </Route>
-              <Route path="/search" component={ Search } />
+              <Route
+                path="/search"
+                render={ (props) => (
+                  <Search
+                    { ...props }
+                    { ...this.state }
+                    onInputChange={ this.onInputChange }
+                  />) }
+              />
               <Route path="/album/:id" render={ (props) => <Album { ...props } /> } />
               <Route path="/favorites" component={ Favorites } />
               <Route exact path="/profile" component={ Profile } />

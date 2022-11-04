@@ -11,11 +11,19 @@ class Favorites extends Component {
   };
 
   componentDidMount() {
+    this.updateFavoriteSongs();
+  }
+
+  updateFavoriteSongs = () => {
     this.setState({ isLoading: true }, async () => {
       const favoriteSongs = await getFavoriteSongs();
       this.setState({ isLoading: false, favoriteSongs });
     });
-  }
+  };
+
+  onFavoritesUpdate = () => {
+    this.updateFavoriteSongs();
+  };
 
   render() {
     const { favoriteSongs, isLoading } = this.state;
@@ -29,6 +37,7 @@ class Favorites extends Component {
               music={ music }
               key={ music.trackName }
               { ...this.state }
+              onFavoritesUpdate={ this.onFavoritesUpdate }
             />)) }
       </div>
     );

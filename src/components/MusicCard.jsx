@@ -19,17 +19,19 @@ class MusicCard extends Component {
   }
 
   onFavoriteCheck = ({ target }) => {
-    const { music } = this.props;
+    const { music, onFavoritesUpdate } = this.props;
 
     if (target.checked) {
       this.setState({ onLoading: true }, async () => {
         await addSong(music);
         this.setState({ onLoading: false, defaultChecked: true });
+        onFavoritesUpdate();
       });
     } else {
       this.setState({ onLoading: true }, async () => {
         await removeSong(music);
         this.setState({ onLoading: false, defaultChecked: false });
+        onFavoritesUpdate();
       });
     }
   };
@@ -91,6 +93,7 @@ MusicCard.propTypes = {
     previewUrl: PropTypes.string.isRequired,
     trackId: PropTypes.number.isRequired,
   }).isRequired,
+  onFavoritesUpdate: PropTypes.func.isRequired,
 };
 
 export default MusicCard;

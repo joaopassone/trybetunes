@@ -48,6 +48,7 @@ class Album extends Component {
                     music={ music }
                     key={ music.trackName }
                     { ...this.state }
+                    onFavoritesUpdate={ () => {} }
                   />
                 )) }
             </>

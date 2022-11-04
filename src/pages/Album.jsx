@@ -4,6 +4,7 @@ import Header from '../components/Header';
 import MusicCard from '../components/MusicCard';
 import getMusics from '../services/musicsAPI';
 import Loading from '../components/Loading';
+import { getFavoriteSongs } from '../services/favoriteSongsAPI';
 
 class Album extends Component {
   state = {
@@ -11,6 +12,7 @@ class Album extends Component {
     artistName: '',
     collectionName: '',
     hasAPIResult: false,
+    favoriteSongs: [],
   };
 
   async componentDidMount() {
@@ -20,8 +22,11 @@ class Album extends Component {
 
     const albumInfo = await getMusics(id);
     const { artistName, collectionName } = albumInfo[0];
+    const favoriteSongs = await getFavoriteSongs();
 
-    this.setState(() => ({ albumInfo, artistName, collectionName, hasAPIResult: true }));
+    this.setState(() => ({
+      albumInfo, artistName, collectionName, hasAPIResult: true, favoriteSongs,
+    }));
   }
 
   render() {

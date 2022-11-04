@@ -1,13 +1,22 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { addSong } from '../services/favoriteSongsAPI';
+import { addSong, removeSong } from '../services/favoriteSongsAPI';
 import Loading from './Loading';
 
 class MusicCard extends Component {
   state = {
     onLoading: false,
-    checked: false,
+    defaultChecked: false,
   };
+
+  componentDidMount() {
+    const { music, favoriteSongs } = this.props;
+    const match = favoriteSongs.find(({ trackId }) => trackId === music.trackId);
+
+    if (match) {
+      this.setState({ defaultChecked: true });
+    }
+  }
 
   onFavoriteCheck = ({ target }) => {
     const { music } = this.props;
@@ -15,16 +24,21 @@ class MusicCard extends Component {
     if (target.checked) {
       this.setState({ onLoading: true }, async () => {
         await addSong(music);
-        this.setState({ onLoading: false, checked: true });
+        this.setState({ onLoading: false, defaultChecked: true });
+      });
+    } else {
+      this.setState({ onLoading: true }, async () => {
+        await removeSong(music);
+        this.setState({ onLoading: false, defaultChecked: false });
       });
     }
-  }
+  };
 
   render() {
     const { music } = this.props;
     const { trackName, previewUrl, trackId } = music;
-    const { onLoading, checked } = this.state;
-
+    const { onLoading, defaultChecked } = this.state;
+    console.log(defaultChecked, trackName);
     const card = (
       <>
         <span>{ trackName }</span>
@@ -44,7 +58,8 @@ class MusicCard extends Component {
             name={ `checkboxMusic${trackId}` }
             id={ `checkbox-music-${trackId}` }
             onClick={ this.onFavoriteCheck }
-            checked={ checked }
+            onChange={() => {}}
+            checked={ defaultChecked }
           />
           Favorita
         </label>
@@ -52,12 +67,25 @@ class MusicCard extends Component {
     );
 
     return (
-      <>{ onLoading ? <Loading /> : card }</>
+      <div>
+        { onLoading ? <Loading /> : card }
+      </div>
     );
   }
 }
 
+MusicCard.defaultProps = {
+  favoriteSongs: [],
+};
+
 MusicCard.propTypes = {
+  favoriteSongs: PropTypes.arrayOf(PropTypes.shape({
+    music: PropTypes.shape({
+      trackName: PropTypes.string,
+      previewUrl: PropTypes.string,
+      trackId: PropTypes.number,
+    }),
+  })),
   music: PropTypes.shape({
     trackName: PropTypes.string.isRequired,
     previewUrl: PropTypes.string.isRequired,

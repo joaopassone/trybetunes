@@ -38,7 +38,13 @@ class Album extends Component {
               <p data-testid="artist-name">{ artistName }</p>
               <p data-testid="album-name">{ collectionName }</p>
               { musics
-                .map((music) => <MusicCard music={ music } key={ music.trackName } />) }
+                .map((music) => (
+                  <MusicCard
+                    music={ music }
+                    key={ music.trackName }
+                    { ...this.state }
+                  />
+                )) }
             </>
           )
           : <Loading /> }

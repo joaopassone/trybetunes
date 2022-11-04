@@ -10,9 +10,7 @@ class Header extends Component {
 
   async componentDidMount() {
     const { name } = await getUser();
-    this.setState(() => ({
-      name,
-    }));
+    this.setState({ name });
   }
 
   render() {
@@ -21,9 +19,9 @@ class Header extends Component {
     return (
       <header data-testid="header-component">
         { name ? <p data-testid="header-user-name">{ name }</p> : <Loading /> }
-        <Link to="/search" data-testid="link-to-search" />
-        <Link to="/favorites" data-testid="link-to-favorites" />
-        <Link to="/profile" data-testid="link-to-profile" />
+        <Link to="/search" data-testid="link-to-search">Search</Link>
+        <Link to="/favorites" data-testid="link-to-favorites">Favorites</Link>
+        <Link to="/profile" data-testid="link-to-profile">Profile</Link>
       </header>
     );
   }

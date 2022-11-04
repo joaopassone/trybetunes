@@ -58,7 +58,7 @@ class MusicCard extends Component {
             name={ `checkboxMusic${trackId}` }
             id={ `checkbox-music-${trackId}` }
             onClick={ this.onFavoriteCheck }
-            onChange={() => {}}
+            onChange={ () => {} }
             checked={ defaultChecked }
           />
           Favorita

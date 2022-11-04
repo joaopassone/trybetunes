@@ -38,7 +38,7 @@ class MusicCard extends Component {
     const { music } = this.props;
     const { trackName, previewUrl, trackId } = music;
     const { onLoading, defaultChecked } = this.state;
-    console.log(defaultChecked, trackName);
+
     const card = (
       <>
         <span>{ trackName }</span>

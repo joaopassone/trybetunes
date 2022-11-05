@@ -34,26 +34,25 @@ class Album extends Component {
     const musics = [...albumInfo];
     musics.splice(0, 1);
 
+    const albumPage = (
+      <>
+        <p data-testid="artist-name">{ artistName }</p>
+        <p data-testid="album-name">{ collectionName }</p>
+        { musics.map((music) => (
+          <MusicCard
+            music={ music }
+            key={ music.trackName }
+            { ...this.state }
+            onFavoritesUpdate={ () => {} }
+          />
+        )) }
+      </>
+    );
+
     return (
       <div data-testid="page-album">
         <Header />
-        { hasAPIResult
-          ? (
-            <>
-              <p data-testid="artist-name">{ artistName }</p>
-              <p data-testid="album-name">{ collectionName }</p>
-              { musics
-                .map((music) => (
-                  <MusicCard
-                    music={ music }
-                    key={ music.trackName }
-                    { ...this.state }
-                    onFavoritesUpdate={ () => {} }
-                  />
-                )) }
-            </>
-          )
-          : <Loading /> }
+        { hasAPIResult ? albumPage : <Loading /> }
       </div>
     );
   }

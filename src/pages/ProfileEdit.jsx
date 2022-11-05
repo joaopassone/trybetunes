@@ -28,12 +28,10 @@ class ProfileEdit extends Component {
   validateSaveButton = () => {
     const { name, email, image, description } = this.state;
 
-    if (name.length * email.length * image.length * description.length !== 0
-      && email.match(/^.+@.+$/)) {
-      this.setState({ isSaveButtonDisabled: false });
-    } else {
-      this.setState({ isSaveButtonDisabled: true });
-    }
+    const notBlank = name.length * email.length * image.length * description.length !== 0;
+    const validEmail = email.match(/^.+@.+$/);
+
+    this.setState({ isSaveButtonDisabled: !(notBlank && validEmail) });
   };
 
   handleChange = ({ target }) => {

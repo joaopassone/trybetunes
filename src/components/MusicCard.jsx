@@ -6,7 +6,7 @@ import Loading from './Loading';
 class MusicCard extends Component {
   state = {
     onLoading: false,
-    defaultChecked: false,
+    checked: false,
   };
 
   componentDidMount() {
@@ -14,32 +14,25 @@ class MusicCard extends Component {
     const match = favoriteSongs.find(({ trackId }) => trackId === music.trackId);
 
     if (match) {
-      this.setState({ defaultChecked: true });
+      this.setState({ checked: true });
     }
   }
 
   onFavoriteCheck = ({ target }) => {
     const { music, onFavoritesUpdate } = this.props;
 
-    if (target.checked) {
-      this.setState({ onLoading: true }, async () => {
-        await addSong(music);
-        this.setState({ onLoading: false, defaultChecked: true });
-        onFavoritesUpdate();
-      });
-    } else {
-      this.setState({ onLoading: true }, async () => {
-        await removeSong(music);
-        this.setState({ onLoading: false, defaultChecked: false });
-        onFavoritesUpdate();
-      });
-    }
+    this.setState({ onLoading: true }, async () => {
+      if (target.checked) await addSong(music);
+      else await removeSong(music);
+      this.setState({ onLoading: false, checked: target.checked });
+      onFavoritesUpdate();
+    });
   };
 
   render() {
     const { music } = this.props;
     const { trackName, previewUrl, trackId } = music;
-    const { onLoading, defaultChecked } = this.state;
+    const { onLoading, checked } = this.state;
 
     const card = (
       <>
@@ -61,7 +54,7 @@ class MusicCard extends Component {
             id={ `checkbox-music-${trackId}` }
             onClick={ this.onFavoriteCheck }
             onChange={ () => {} }
-            checked={ defaultChecked }
+            checked={ checked }
           />
           Favorita
         </label>

@@ -35,6 +35,7 @@ class Login extends Component {
 
   render() {
     const { loginNameInput, isLoginButtonDisabled, isLoading, isLogged } = this.state;
+
     const loginForm = (
       <form>
         <label htmlFor="login-name-input">

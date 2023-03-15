@@ -1,4 +1,4 @@
-# Projeto TRybeTunes
+# Projeto TrybeTunes
 
 Projeto que simula uma plataforma de streaming de música através de conexão com API do ITunes.
 

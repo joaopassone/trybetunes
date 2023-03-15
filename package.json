@@ -2,6 +2,7 @@
   "name": "trybetunes",
   "version": "1.0.1",
   "private": true,
+  "homepage": "https://joaopassone.github.io/projetos/trybe-tunes",
   "engines": {
     "node": "16"
   },

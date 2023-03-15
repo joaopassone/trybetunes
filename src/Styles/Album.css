@@ -1,0 +1,35 @@
+.album-page-div {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin-top: 50px;
+}
+
+.album-info {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  width: 30vw;
+}
+
+.album-cover {
+  margin: 20px 0 10px;
+  width: 14vw;
+}
+
+.album-name-album {
+  font-size: 2vw;
+  font-weight: 600;
+  margin: 0;
+}
+
+.artist-name-album {
+  font-size: 1vw;
+  color: grey;
+}
+
+.musics-list {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}

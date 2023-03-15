@@ -1,0 +1,38 @@
+@import url('https://cdn-uicons.flaticon.com/uicons-bold-rounded/css/uicons-bold-rounded.css') ;
+
+.search-p {
+  font-size: large;
+  margin: 50px 10px;
+}
+
+.search-form {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  margin-top: 50px;
+}
+
+.search-form label input {
+  font-size: large;
+  height: 5vh;
+  width: 30vw;
+}
+
+.search-form button {
+  height: calc(5vh + 4px);
+  padding: 1px 2px;
+  transform: translateX(-51px);
+  width: 50px;
+}
+
+.search-form button i {
+  font-size: large;
+}
+
+.album-div {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2vw;
+  justify-content: center;
+  margin: 10px 2.3vw;
+}

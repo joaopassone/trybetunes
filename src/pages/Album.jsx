@@ -5,6 +5,7 @@ import MusicCard from '../components/MusicCard';
 import getMusics from '../services/musicsAPI';
 import Loading from '../components/Loading';
 import { getFavoriteSongs } from '../services/favoriteSongsAPI';
+import '../Styles/Album.css';
 
 class Album extends Component {
   state = {
@@ -32,25 +33,38 @@ class Album extends Component {
   render() {
     const { albumInfo, artistName, collectionName, hasAPIResult } = this.state;
     const musics = [...albumInfo];
+    const [album] = musics;
+    let cover;
+    if (album) ({ artworkUrl100: cover } = album);
+
     musics.splice(0, 1);
 
     const albumPage = (
-      <>
-        <p data-testid="artist-name">{ artistName }</p>
-        <p data-testid="album-name">{ collectionName }</p>
-        { musics.map((music) => (
-          <MusicCard
-            music={ music }
-            key={ music.trackName }
-            { ...this.state }
-            onFavoritesUpdate={ () => {} }
-          />
-        )) }
-      </>
+      <div className="album-page-div">
+        <div className="album-info">
+          <img src={ cover } alt="cover" className="album-cover" />
+          <p data-testid="album-name" className="album-name-album">
+            { collectionName }
+          </p>
+          <p data-testid="artist-name" className="artist-name-album">
+            { artistName }
+          </p>
+        </div>
+        <div className="musics-list">
+          { musics.map((music) => (
+            <MusicCard
+              music={ music }
+              key={ music.trackName }
+              { ...this.state }
+              onFavoritesUpdate={ () => {} }
+            />
+          )) }
+        </div>
+      </div>
     );
 
     return (
-      <div data-testid="page-album">
+      <div data-testid="page-album" className="album-page">
         <Header />
         { hasAPIResult ? albumPage : <Loading /> }
       </div>

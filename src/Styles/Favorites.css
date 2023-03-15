@@ -1,0 +1,14 @@
+.favorite-div {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+}
+
+h2 {
+  font-size: 30px;
+}
+
+.favorite-music-div {
+  margin-left: 20vw;
+  width: 80vw;
+}

@@ -1,0 +1,20 @@
+.profile-page {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+}
+
+.profile-page img {
+  border-radius: 50%;
+  height: 15vw;
+  width: 15vw;
+}
+
+.profile-info {
+  font-size: 2vh;
+}
+
+.profile-name {
+  font-size: 3vh;
+  font-weight: bold;
+}

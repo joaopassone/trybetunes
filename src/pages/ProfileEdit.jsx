@@ -3,6 +3,7 @@ import { Redirect } from 'react-router-dom';
 import Header from '../components/Header';
 import Loading from '../components/Loading';
 import { getUser, updateUser } from '../services/userAPI';
+import '../Styles/ProfileEdit.css';
 
 class ProfileEdit extends Component {
   state = {
@@ -54,61 +55,65 @@ class ProfileEdit extends Component {
       description, isSaveButtonDisabled, isSaved } = this.state;
 
     const page = (
-      <form>
-        <label htmlFor="edit-input-name">
-          Nome
-          <input
-            type="text"
-            name="name"
-            id="edit-input-name"
-            value={ name }
-            onChange={ this.handleChange }
-            data-testid="edit-input-name"
-          />
-        </label>
-        <label htmlFor="edit-input-email">
-          Email
-          <input
-            type="text"
-            name="email"
-            id="edit-input-email"
-            value={ email }
-            onChange={ this.handleChange }
-            data-testid="edit-input-email"
-          />
-        </label>
-        <label htmlFor="edit-input-description">
-          Descrição
-          <textarea
-            name="description"
-            id="edit-input-description"
-            value={ description }
-            onChange={ this.handleChange }
-            data-testid="edit-input-description"
-          />
-        </label>
-        <label htmlFor="edit-input-image">
-          Imagem
-          <input
-            type="text"
-            name="image"
-            id="edit-input-image"
-            value={ image }
-            onChange={ this.handleChange }
-            data-testid="edit-input-image"
-          />
-        </label>
-        <button
-          type="button"
-          name="editButtonSave"
-          id="edit-button-save"
-          disabled={ isSaveButtonDisabled }
-          onClick={ this.onSaveButtonClick }
-          data-testid="edit-button-save"
-        >
-          Salvar
-        </button>
-      </form>
+      <div className="profile-edit-page">
+        <h2>Profile Edit</h2>
+        <img src={ image } alt="" />
+        <form>
+          <label htmlFor="edit-input-image">
+            Imagem
+            <input
+              type="text"
+              name="image"
+              id="edit-input-image"
+              value={ image }
+              onChange={ this.handleChange }
+              data-testid="edit-input-image"
+            />
+          </label>
+          <label htmlFor="edit-input-name">
+            Nome
+            <input
+              type="text"
+              name="name"
+              id="edit-input-name"
+              value={ name }
+              onChange={ this.handleChange }
+              data-testid="edit-input-name"
+            />
+          </label>
+          <label htmlFor="edit-input-email">
+            Email
+            <input
+              type="text"
+              name="email"
+              id="edit-input-email"
+              value={ email }
+              onChange={ this.handleChange }
+              data-testid="edit-input-email"
+            />
+          </label>
+          <label htmlFor="edit-input-description">
+            Descrição
+            <textarea
+              name="description"
+              id="edit-input-description"
+              value={ description }
+              onChange={ this.handleChange }
+              data-testid="edit-input-description"
+            />
+          </label>
+          <button
+            type="button"
+            name="editButtonSave"
+            id="edit-button-save"
+            disabled={ isSaveButtonDisabled }
+            onClick={ this.onSaveButtonClick }
+            data-testid="edit-button-save"
+          >
+            Salvar
+          </button>
+        </form>
+      </div>
     );
 
     return (

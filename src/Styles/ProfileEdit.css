@@ -1,0 +1,38 @@
+.profile-edit-page {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+}
+
+.profile-edit-page form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 30vw;
+}
+
+.profile-edit-page img {
+  border-radius: 50%;
+  margin-bottom: 10px;
+  height: 15vw;
+  width: 15vw;
+}
+
+.profile-edit-page form label {
+  display: flex;
+  justify-content: space-between;
+}
+
+.profile-edit-page form label input, .profile-edit-page form label textarea {
+  width: 25vw;
+}
+
+.profile-edit-page form label textarea {
+  height: 10vh;
+  resize: none;
+}
+
+.profile-edit-page form button {
+  align-self: center;
+  width: 5vw;
+}

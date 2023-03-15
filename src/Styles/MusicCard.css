@@ -1,0 +1,33 @@
+.music-card-div {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  margin: 20px 100px;
+}
+
+.music-card-div span {
+  width: 25%;
+}
+
+.audio-heart-div {
+  align-items: center;
+  display: flex;
+  flex-grow: 1;
+}
+
+.audio-heart-div audio {
+  width: 50%;
+}
+
+.music-card-div label input {
+  display: none;
+}
+
+.music-card-div label img {
+  height: 40px;
+  padding: 0 10px;
+}
+
+.music-card-div label img:hover {
+  cursor: pointer;
+}
